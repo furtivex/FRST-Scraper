@@ -14,7 +14,7 @@ FOR /F "TOKENS=*" %%G IN ( %TEMP%\clipboard00 ) DO @(
   TYPE "%%G">>"%TEMP%\Clipboard01"
   )
 
-GREP -Eis "detected!|\[X\]|== (ATTENTION|Cyrillic)|AlternateDataStreams|\\StartupApproved\\|\\MountPoints|\(?No File\)?|no ImagePath|ATTENTION:|zero byte File|not found" <"%TEMP%\Clipboard01" >"%TEMP%\Clipboard02"
+GREP -Eis "detected!|\[X\]|== (ATTENTION|Cyrillic)|AlternateDataStreams|\\StartupApproved\\|\\MountPoints|\(?No File\)?|no ImagePath|ATTENTION:|zero byte File|not found|grubx64\.efi" <"%TEMP%\Clipboard01" >"%TEMP%\Clipboard02"
 GREP -Eis "\[File not signed\]|000000000 __SHD" <"%TEMP%\Clipboard01" >"%TEMP%\Clipboard05"
 SORT_ -f -u <"%TEMP%\Clipboard02" >"%TEMP%\Clipboard03"
 SORT_ -f -u <"%TEMP%\Clipboard05" >"%TEMP%\Clipboard06"
@@ -34,6 +34,7 @@ ECHO.EmptyEventLogs:>>"%TEMP%\ClipboardFinal.txt"
 ECHO.CMD: DIR /B/S/A:-D ^<LOOK IN HERE^>>>"%TEMP%\ClipboardFinal.txt"
 ECHO.CMD: DISM /Online /Cleanup-image /Restorehealth>>"%TEMP%\ClipboardFinal.txt"
 ECHO.CMD: sfc /scannow>>"%TEMP%\ClipboardFinal.txt"
+ECHO.CMD: echo y|chkdsk c: /f /r
 ECHO.Emptytemp:>>"%TEMP%\ClipboardFinal.txt"
 ECHO.End::>>"%TEMP%\ClipboardFinal.txt"
 ECHO.>>"%TEMP%\ClipboardFinal.txt"
