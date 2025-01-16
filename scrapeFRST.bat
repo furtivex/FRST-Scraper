@@ -15,7 +15,8 @@ FOR /F "TOKENS=*" %%G IN ( %TEMP%\clipboard00 ) DO @(
   TYPE "%%G">>"%TEMP%\Clipboard01"
   )
 
-GREP -Eis "detected!|\[X\]|== (ATTENTION|Cyrillic)|AlternateDataStreams|\\StartupApproved\\|\\MountPoints|\(?No File\)?|no ImagePath|ATTENTION:|zero byte File|not found|(Page|URL) =\s+?$|grubx64\.efi" <"%TEMP%\Clipboard01" >"%TEMP%\Clipboard02"
+GREP -Eis "detected!|\[X\]|== (ATTENTION|Cyrillic)|AlternateDataStreams|\\StartupApproved\\|\\MountPoints|\(?No File\)?|no ImagePath|ATTENTION:|zero byte File|not found" <"%TEMP%\Clipboard01" >"%TEMP%\Clipboard02"
+GREP -Pis "(Page|URL) =\s+?$|grubx64\.efi" <"%TEMP%\Clipboard01" >>"%TEMP%\Clipboard02"
 GREP -Eis "\[File not signed\]|000000000 __SHD" <"%TEMP%\Clipboard01" >"%TEMP%\Clipboard05"
 SORT_ -f -u <"%TEMP%\Clipboard02" >"%TEMP%\Clipboard03"
 SORT_ -f -u <"%TEMP%\Clipboard05" >"%TEMP%\Clipboard06"
