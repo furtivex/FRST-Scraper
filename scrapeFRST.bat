@@ -7,6 +7,7 @@ SET "downloads=C:\Users\d1savow3d\Downloads"
 
 DIR /B/S/A:-D "%downloads%\FRST*.txt" 2>NUL>"%TEMP%\clipboard00"
 DIR /B/S/A:-D "%downloads%\Addition*.txt" 2>NUL>>"%TEMP%\clipboard00"
+DIR /B/S/A:-D "%downloads%\Fixlog*.txt" 2>NUL>>"%TEMP%\clipboard00"
 
 IF EXIST "%TEMP%\ClipboardFinal.txt" DEL /F/Q "%TEMP%\ClipboardFinal.txt"
 
