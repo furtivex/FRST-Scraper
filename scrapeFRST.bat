@@ -5,9 +5,11 @@
 @PROMPT #
 SET "downloads=C:\Users\d1savow3d\Downloads"
 
+IF EXIST "%TEMP%\ClipboardFinal.txt" DEL /F/Q "%TEMP%\ClipboardFinal.txt" >NUL 2>&1
 DIR /B/S/A:-D "%downloads%\FRST*.txt" 2>NUL>"%TEMP%\clipboard00"
 DIR /B/S/A:-D "%downloads%\Addition*.txt" 2>NUL>>"%TEMP%\clipboard00"
 DIR /B/S/A:-D "%downloads%\Fixlog*.txt" 2>NUL>>"%TEMP%\clipboard00"
+DIR /B/S/A:-D "%downloads%\Fixlist*.txt" 2>NUL>>"%TEMP%\clipboard00"
 
 IF EXIST "%TEMP%\ClipboardFinal.txt" DEL /F/Q "%TEMP%\ClipboardFinal.txt"
 
