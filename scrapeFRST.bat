@@ -5,8 +5,7 @@
 @PROMPT #
 SET "downloads=C:\Users\d1savow3d\Downloads"
 
-IF EXIST "%TEMP%\ClipboardFinal.txt" DEL /F/Q "%TEMP%\ClipboardFinal.txt" >NUL 2>&1
-
+DEL /F/Q "%TEMP%\Clipboard*" >NUL 2>&1
 
 DIR /B/S/A:-D "%downloads%\FRST*.txt" 2>NUL>"%TEMP%\clipboard00"
 DIR /B/S/A:-D "%downloads%\Addition*.txt" 2>NUL>>"%TEMP%\clipboard00"
@@ -18,7 +17,7 @@ FOR /F "TOKENS=*" %%G IN ( %TEMP%\clipboard00 ) DO @(
   TYPE "%%G">>"%TEMP%\Clipboard01"
   )
 
-GREP -Eis "detected!|\[X\]|== (ATTENTION|Cyrillic)|AlternateDataStreams|\\StartupApproved\\|\\MountPoints|\(?No File\)?|no ImagePath|ATTENTION:|zero byte File|not found" <"%TEMP%\Clipboard01" >"%TEMP%\Clipboard02"
+GREP -Eis "detected!|\[X\]|== (ATTENTION|Cyrillic)|AlternateDataStreams|\\StartupApproved\\|\\MountPoints|\(?No File\)?|no ImagePath|ATTENTION:|zero byte File|not found|no filepath" <"%TEMP%\Clipboard01" >"%TEMP%\Clipboard02"
 GREP -Pis "(Page|URL) =\s+?$|grubx64\.efi|\{[A-F0-9]{8}-[A-F0-9]{4}-[A-F0-9]{4}-[A-F0-9]{4}-[A-F0-9]{12}\}] -\> $|\(Allow\) LPort=\d{2,5}" <"%TEMP%\Clipboard01" >>"%TEMP%\Clipboard02"
 GREP -Eis "\[File not signed\]|000000000 __SHD" <"%TEMP%\Clipboard01" >"%TEMP%\Clipboard05"
 SORT_ -f -u <"%TEMP%\Clipboard02" >"%TEMP%\Clipboard03"
@@ -27,6 +26,7 @@ SORT_ -f -u <"%TEMP%\Clipboard05" >"%TEMP%\Clipboard06"
 ECHO.Start::>"%TEMP%\ClipboardFinal.txt"
 ECHO.SystemRestore: On>>"%TEMP%\ClipboardFinal.txt"
 ECHO.CreateRestorePoint:>>"%TEMP%\ClipboardFinal.txt"
+ECHO.CloseProcesses:>>"%TEMP%\ClipboardFinal.txt"
 ECHO.>>"%TEMP%\ClipboardFinal.txt"
 TYPE "%TEMP%\Clipboard03">>"%TEMP%\ClipboardFinal.txt"
 ECHO.>>"%TEMP%\ClipboardFinal.txt"
