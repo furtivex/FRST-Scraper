@@ -91,6 +91,8 @@ ECHO.EmptyEventLogs:>>"%TEMP%\ClipboardFinal.txt"
 ECHO.CMD: DIR /B/S/A:-D ^<LOOK IN HERE^>>>"%TEMP%\ClipboardFinal.txt"
 ECHO.CMD: DISM /Online /Cleanup-image /Restorehealth>>"%TEMP%\ClipboardFinal.txt"
 ECHO.CMD: sfc /scannow>>"%TEMP%\ClipboardFinal.txt"
+ECHO.CMD: winmgmt /salvagerepository>>"%TEMP%\ClipboardFinal.txt"
+ECHO.CMD: winmgmt /verifyrepository>>"%TEMP%\ClipboardFinal.txt"
 ECHO.CMD: ECHO Y^|chkdsk c: /f /r>>"%TEMP%\ClipboardFinal.txt"
 ECHO.ExportKey: HKLM\SOFTWARE\Microsoft\Windows Defender\Exclusions>>"%TEMP%\ClipboardFinal.txt"
 
