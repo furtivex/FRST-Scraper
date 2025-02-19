@@ -93,12 +93,14 @@ ECHO.CMD: DISM /Online /Cleanup-image /Restorehealth>>"%TEMP%\ClipboardFinal.txt
 ECHO.CMD: sfc /scannow>>"%TEMP%\ClipboardFinal.txt"
 ECHO.CMD: winmgmt /salvagerepository>>"%TEMP%\ClipboardFinal.txt"
 ECHO.CMD: winmgmt /verifyrepository>>"%TEMP%\ClipboardFinal.txt"
-ECHO.CMD: ECHO Y^|chkdsk c: /f /r>>"%TEMP%\ClipboardFinal.txt"
+ECHO.CMD: chcp 65001 ^& chkdsk C: /V>>"%TEMP%\ClipboardFinal.txt"
 ECHO.ExportKey: HKLM\SOFTWARE\Microsoft\Windows Defender\Exclusions>>"%TEMP%\ClipboardFinal.txt"
 
 ECHO.StartPowershell:>>"%TEMP%\ClipboardFinal.txt"
 ECHO.Remove-MpPreference -ExclusionPath "C:\ProgramData\WindowsTask\AMD.exe">>"%TEMP%\ClipboardFinal.txt"
 ECHO.Remove-MpPreference -ExclusionPath "C:\ProgramData">>"%TEMP%\ClipboardFinal.txt"
+ECHO.Remove-MpPreference -ExclusionExtension ".exe">>"%TEMP%\ClipboardFinal.txt"
+ECHO.Remove-MpPreference -ExclusionProcess "powershell.exe">>"%TEMP%\ClipboardFinal.txt"
 ECHO.EndPowerShell:>>"%TEMP%\ClipboardFinal.txt"
 
 ECHO.>>"%TEMP%\ClipboardFinal.txt"
