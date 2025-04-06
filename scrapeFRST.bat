@@ -17,9 +17,9 @@ FOR /F "TOKENS=*" %%G IN ( %TEMP%\clipboard00 ) DO @(
   TYPE "%%G">>"%TEMP%\Clipboard01"
   )
 
-GREP -Eis "detected!|\[X\]|== (ATTENTION|Cyrillic)|AlternateDataStreams|\\StartupApproved\\|\\MountPoints|\(?No File\)?|no ImagePath|ATTENTION:|zero byte File|not found|no filepath" <"%TEMP%\Clipboard01" >"%TEMP%\Clipboard02"
-GREP -Pis "(Page|URL) =\s+?$|grubx64\.efi|\{[A-F0-9]{8}-[A-F0-9]{4}-[A-F0-9]{4}-[A-F0-9]{4}-[A-F0-9]{12}\}] -\> $|\(Allow\) LPort=\d{2,5}" <"%TEMP%\Clipboard01" >>"%TEMP%\Clipboard02"
-GREP -Eis "\[File not signed\]|000000000 __SHD|File is in use" <"%TEMP%\Clipboard01" >"%TEMP%\Clipboard05"
+GREP -Eis "detected!|\[X\]|== (ATTENTION|ВНИМАНИЕ|Cyrillic)|AlternateDataStreams|\\StartupApproved\\|\\MountPoints|\(?No File\)?|\(?Нет файла\)?|no ImagePath|(ATTENTION|ВНИМАНИЕ):|zero byte File|not found|no filepath" <"%TEMP%\Clipboard01" >"%TEMP%\Clipboard02"
+GREP -Pis "(Page|URL) =\s+?$|grubx64\.efi|\{[A-F0-9]{8}-[A-F0-9]{4}-[A-F0-9]{4}-[A-F0-9]{4}-[A-F0-9]{12}\}] -\> $|\(Allow\) LPort=\d{2,5}|DisallowedCertificates" <"%TEMP%\Clipboard01" >>"%TEMP%\Clipboard02"
+GREP -Eis "\[(File not signed|Файл не подписан)\]|000000000 __SHD|File is in use" <"%TEMP%\Clipboard01" >"%TEMP%\Clipboard05"
 SORT_ -f -u <"%TEMP%\Clipboard02" >"%TEMP%\Clipboard03"
 SORT_ -f -u <"%TEMP%\Clipboard05" >"%TEMP%\Clipboard06"
 
