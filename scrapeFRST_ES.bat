@@ -3,6 +3,7 @@
 @ECHO OFF
 @SETLOCAL
 SET "downloads=C:\Users\d1savow3d\Downloads"
+chcp 65001>NUL
 
 DEL /F/A/Q "%TEMP%\Clipboard*" >NUL 2>&1
 
@@ -14,9 +15,9 @@ FOR /F "TOKENS=*" %%G IN ( %TEMP%\Clipboard00 ) DO @(
   )
 
 
-GREP -Eis "ATTENTION:?|\(?No (ImagePath|filepath|File)\)?|zero byte File|not found|detected!|AlternateDataStreams|\\StartupApproved\\|\\MountPoints|\[X\]" <"%TEMP%\Clipboard01" >"%TEMP%\Clipboard02"
+GREP -Eis "ATENCIÓN:?|\(?Ningún archivo\)?" <"%TEMP%\Clipboard01" >"%TEMP%\Clipboard02"
 GREP -Pis "(Page|URL) =\s+?$|grubx64\.efi|\{[A-F0-9]{8}-[A-F0-9]{4}-[A-F0-9]{4}-[A-F0-9]{4}-[A-F0-9]{12}\}] -\> $|\(Allow\) LPort=\d{2,5}|DisallowedCertificates" <"%TEMP%\Clipboard01" >>"%TEMP%\Clipboard02"
-GREP -Eis "\[File not signed\]|000000000 __SHD|File is in use" <"%TEMP%\Clipboard01" >"%TEMP%\Clipboard03"
+GREP -Eis "\[Archivo no firmado\]|000000000 __SHD" <"%TEMP%\Clipboard01" >"%TEMP%\Clipboard03"
 
 ECHO.Start::>"%TEMP%\ClipboardFinal.txt"
 ECHO.SystemRestore: On>>"%TEMP%\ClipboardFinal.txt"
@@ -82,7 +83,7 @@ ECHO.CMD: sfc /scannow>>"%TEMP%\ClipboardFinal.txt"
 ECHO.CMD: winmgmt /salvagerepository>>"%TEMP%\ClipboardFinal.txt"
 ECHO.CMD: winmgmt /verifyrepository>>"%TEMP%\ClipboardFinal.txt"
 ECHO.CMD: chcp 65001 ^& chkdsk C: /V>>"%TEMP%\ClipboardFinal.txt"
-ECHO.Zip: C:\FRST\Quarantine>>"%TEMP%\ClipboardFinal.txt"
+ECHO.ExportKey: HKLM\SOFTWARE\Microsoft\Windows Defender\Exclusions>>"%TEMP%\ClipboardFinal.txt"
 ECHO.>>"%TEMP%\ClipboardFinal.txt"
 ECHO.>>"%TEMP%\ClipboardFinal.txt"
 ECHO.StartPowershell:>>"%TEMP%\ClipboardFinal.txt"
